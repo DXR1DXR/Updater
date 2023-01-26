@@ -13,7 +13,7 @@ namespace Updater
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args)//0: path to existing file 1:User 2:Project 3:DownloadingFile 
         {
             try
             {
@@ -31,9 +31,9 @@ namespace Updater
                 }
                 Console.WriteLine("Process terminated");
                 GitHubClient gitHubClient = new GitHubClient(new ProductHeaderValue("prak_G_13_Client"));
-                var releases = gitHubClient.Repository.Release.GetLatest("DXR1DXR", "prak_G_13_Client");
-                var latestVersionUrl = "https://github.com/DXR1DXR/prak_G_13_Client/releases/download/" + releases.Result.TagName + "/prak_G_13_Client.exe";
-                var exePath = Directory.GetCurrentDirectory() + "\\prak_G_13_Client.exe";
+                var releases = gitHubClient.Repository.Release.GetLatest(args[1], args[2]);
+                var latestVersionUrl = "https://github.com/DXR1DXR/prak_G_13_Client/releases/download/" + releases.Result.TagName + "/" + args[3];
+                var exePath = Directory.GetCurrentDirectory() + "\\new.exe";
                 using (var wc = new WebClient())
                 {
                     wc.Headers.Add(HttpRequestHeader.UserAgent, "MyUserAgent");
